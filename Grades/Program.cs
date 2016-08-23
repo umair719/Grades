@@ -20,7 +20,7 @@ namespace Grades
             you can add += to add more delegates or remove -= 
             */
 
-            book.NameChanged += new NameChangedDelegate(OnNameChanged);
+            book.NameChanged += OnNameChanged;
             book.Name = "Umair's Grade Book";
 
             
@@ -41,7 +41,7 @@ namespace Grades
 
         }
 
-        // a 
+        // method which should be executed when the event is invoked
         static void OnNameChanged(object sender, NameChangedEventsArgs args)
         {
             Console.WriteLine($"Grade book changing name from {args.ExistingName} to {args.NewName}");
