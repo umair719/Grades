@@ -10,7 +10,8 @@ namespace Grades
     {
         public GradeBook()
         {
-              
+            _name = "Empty";
+            grades = new List<float>();
         }
 
         public void AddGrade(float grade)
@@ -36,14 +37,45 @@ namespace Grades
             return stats;
         }
 
-        public string Name;
+        public string Name
+        {
+            get
+            {
+                return _name;
+            }
 
+            set
+            {
+                if (!String.IsNullOrEmpty(value))
+                {
 
+                    if (_name != value)
+                    {
+                        NameChangedEventsArgs args = new NameChangedEventsArgs(); // create event args class (inherets from EventArgs)
+                        args.ExistingName = _name; // initilize varliable
+                        args.NewName = value; // initilize 
 
+                        
+                        // invoking the delegate when there is a change in value dedected
+                        NameChanged(this, args); 
+                    }
+                    _name = value;
+                }
+            }
+
+        }
+
+        // class definition for NameChanged as a "NameChangedDelegate"
+        // public NameChangedDelegate NameChanged;
+
+        // definition of a event (events are prefered over delegates)
+        public event NameChangedDelegate NameChanged;
+
+        private string _name;
         public List<float> grades = new List<float>();
 
-        
-       
+
+
 
     }
 }
