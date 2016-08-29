@@ -17,7 +17,5 @@ namespace Grades
         public float AverageGrade;
         public float HighestGrade;
         public float LowestGrade;
-
-
     }
 }
